@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面布局</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="nav-container">
+        <div id="nav">
+            <ul>
+                <li v-for="(item, index) in list" @click="change_show(index)" :style="{'--mycolor': colors[index]}"
+                    class="nav-item" :class="{active: active_list[index]}">
+                    <div class="content">{{ item }}</div>
+                    <div class="box" :style="{display : active_list[index] ? 'block' : 'none'}"></div>
+                </li>
+                <div class="nav-box"></div>
+            </ul>
+        </div>
+        <div id="app">
+            <div class="main-div bee" :style="{display: active_list[0] ? 'block' : 'none'}">
+                <div class="line" v-for="(item, index) in bee_pictures">
+                    <div class="item" v-for="(item1, index1) in item" @mouseenter="enter(index, index1)"
+                        @mouseleave="leave(index, index1)">
+                        <img :src="item1">
+                    </div>
+                </div>
+            </div>
+            <div class="main-div water-fall" :style="{display: active_list[1] ? 'block' : 'none'}">
+                <div class="container">
+                    <div class="col" v-for="(item, index) in water_fall_pictures">
+                        <div v-for="(item1, index1) in item" class="img-box">
+                            <img :src="item1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-div flex" :style="{display: active_list[2] ? 'block' : 'none'}">
+                <div class="container">
+                    <div class="phone">
+                        <img src="./assets/images/apple/13.jpg" alt="Product 1" />
+                        <div class="info">
+                            <strong>Apple/苹果 <br>iPhone 13</strong>
+                            <p class="info1">128G|双模5G|A15|充电功率20W</p>
+                            <p class="price">¥4699.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/huawei/70z.jpg" alt="Product 2" />
+                        <div class="info">
+                            <strong>华为畅享 70z <br>Huawei/华为</strong>
+                            <p class="info1">后置摄像头1300万|充电功率22.5W</p>
+                            <p class="price">¥1099.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/oppo/12.jpg" alt="Product 3" />
+                        <div class="info">
+                            <strong>OnePlus/一加 12 <br>拍照5G手机</strong>
+                            <p class="info1">第三代骁龙®8移动平台|6.82英寸</p>
+                            <p class="price">¥4299.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/vivo/neo9.jpg" alt="Product 4" />
+                        <div class="info">
+                            <strong>vivo IQOO Neo9手机 <br> 5G全网通</strong>
+                            <p class="info1">双模5G|120W|6.78英寸</p>
+                            <p class="price">¥2299.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/xiaomi/civi3.jpg" alt="Product 5" />
+                        <div class="info">
+                            <strong>Xiaomi Civi 3 <br> 新品手机</strong>
+                            <p class="info1">67W|6.55英寸|4500mAh</p>
+                            <p class="price">¥2299.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/apple/14.jpg" alt="Product 6" />
+                        <div class="info">
+                            <strong>Apple/苹果 <br> iPhone 14</strong>
+                            <p class="info1">A15 仿生芯片|后置摄像头1200万</p>
+                            <p class="price">¥5399.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/huawei/mate60pro.jpg" alt="Product 7" />
+                        <div class="info">
+                            <strong>华为/HUAWEI <br> Mate 60 pro手机</strong>
+                            <p class="info1">88W+55W|6.82英寸|5000mAh</p>
+                            <p class="price">¥8899.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/oppo/ace3v.jpg" alt="Product 8" />
+                        <div class="info">
+                            <strong>OnePlus/一加Ace <br> 3V 手机新款</strong>
+                            <p class="info1">100W|256GB|6.74英寸</p>
+                            <p class="price">¥1999.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/vivo/s18pro.jpg" alt="Product 9" />
+                        <div class="info">
+                            <strong>vivo S18 Pro <br> 新品拍照手机</strong>
+                            <p class="info1">80W|6.78英寸|5000mAh</p>
+                            <p class="price">¥2899.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/xiaomi/k70.jpg" alt="Product 10" />
+                        <div class="info">
+                            <strong>Redmi 红米 K70 <br> 小米智能手机</strong>
+                            <p class="info1">骁龙8 Gen2|充电功率120W</p>
+                            <p class="price">¥2349.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/apple/15pro.jpg" alt="Product 11" />
+                        <div class="info">
+                            <strong>Apple/苹果 <br> iPhone 15 Pro</strong>
+                            <p class="info1">20W|256GB|6.1英寸</p>
+                            <p class="price">¥7999.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/huawei/nova12pro.jpg" alt="Product 12" />
+                        <div class="info">
+                            <strong>华为/HUAWEI <br> nova 12 pro</strong>
+                            <p class="info1">100W|6.76英寸|4600mAh</p>
+                            <p class="price">¥3899.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/oppo/findx7.jpg" alt="Product 13" />
+                        <div class="info">
+                            <strong>OPPO Find X7 <br> 超级闪充数码AI手机</strong>
+                            <p class="info1">100W|5000mAh|6.82英寸</p>
+                            <p class="price">¥3899.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/vivo/y33t.jpg" alt="Product 14" />
+                        <div class="info">
+                            <strong>vivo Y33t <br> 新品手机新品上市</strong>
+                            <p class="info1">15W|128GB|3.56英寸</p>
+                            <p class="price">¥699.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/xiaomi/mi14.jpg" alt="Product 15" />
+                        <div class="info">
+                            <strong>小米 14 5G <br> 手机新款上市</strong>
+                            <p class="info1">6.36英寸|充电功率90W</p>
+                            <p class="price">¥3999.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/apple/SE.jpg" alt="Product 16" />
+                        <div class="info">
+                            <strong>Apple/苹果 <br> iPhone SE</strong>
+                            <p class="info1">64GB|18W|双模5G</p>
+                            <p class="price">¥3499.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/huawei/pocket2.jpg" alt="Product 17" />
+                        <div class="info">
+                            <strong>华为/HUAWEI <br> Pocket 2</strong>
+                            <p class="info1">66W|6.94英寸|256GB</p>
+                            <p class="price">¥7499.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/oppo/reno11.jpg" alt="Product 18" />
+                        <div class="info">
+                            <strong>OPPO Reno11 <br> 天玑8200旗舰芯片手机</strong>
+                            <p class="info1">双模5G|67W|8GB+256GB</p>
+                            <p class="price">¥1999.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/vivo/x100.jpg" alt="Product 19" />
+                        <div class="info">
+                            <strong>vivo X100 <br> 智能拍照手机</strong>
+                            <p class="info1">天玑 9300|充电功率120W</p>
+                            <p class="price">¥3949.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <img src="./assets/images/xiaomi/turbo3.jpg" alt="Product 20" />
+                        <div class="info">
+                            <strong>Redmi Turbo3 <br> 手机 小旋风骁龙8s手机</strong>
+                            <p class="info1">第三代骁龙®8s移动平台|90W</p>
+                            <p class="price">¥1999.00</p>
+                            <button>加入购物车</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-div grid" :style="{display: active_list[3] ? 'block' : 'none'}">
+                <div class="container">
+                    <ul class="header">
+                        <li>网站首页</li>
+                        <li>作品简介</li>
+                        <li>角色介绍</li>
+                        <li>精美图片</li>
+                        <li>精彩视频</li>
+                        <li>联系我们</li>
+                    </ul>
+                    <h1>角色介绍</h1>
+                    <div class="content">
+                        <div class="img-box">
+                            <img src="./assets/images/海绵宝宝.jpg" alt="">
+                        </div>
+                        <div class="content-box">
+                            <strong>海绵宝宝</strong>
+                            <p>
+                                海绵宝宝方块形的身体柔软强韧抗击打，可大可小，能长能短，头部曾经被派大星削掉突出大脑门，身形特殊，能无视痛觉将自身截肢分解再重组身体，改装躯体结构，身体内部具有和陆地生物相似的器官，体能弹性十足。
+                                海绵宝宝虽然有过正常进食，但纯滤食海水也能继续存活，吸收水份让体型巨大化。
+                                他体力薄弱，而且离开水源太久皮肤会干燥导致全身无力，身体湿度过低会收缩，且其所谓的哑铃其实是绒毛玩具；但随着剧情发展似乎逐渐提升，与珊迪对打空手道时完全不符合之前设定，战斗力惊人（二人不相上下，珊迪的破坏力多强是人所皆知的）。
+                                平常喜欢说的口头禅是：“我准备好了”。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="img-box">
+                            <img src="./assets/images/派大星.jpg" alt="">
+                        </div>
+                        <div class="content-box">
+                            <strong>派大星</strong>
+                            <p>
+                                派大星是一只傻乎乎的海星，是海绵宝宝最好的朋友，住在隔壁的插着天线的大石头中。派大星通常好吃懒做而且无脑，经常一事无成，又称“粉红大胖呆”。他没有鼻子，认不得自己的父母，最喜欢看电视，是一个爱电视的海星，不喜欢洗澡，腋下都是毛。
+                                曾经荣获“最懒最粉最什么事都不做的海星”称号。脑子中实际上有无限的智慧，不过平时不会表现出来，只有到了重要关头才会显现，不过经常被海绵宝宝搞砸，在第十二季《贝壳游戏》透露，派大星住的石头屋是一只睡过头的海龟的壳。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="img-box">
+                            <img src="./assets/images/章鱼哥.jpg" alt="">
+                        </div>
+                        <div class="content-box">
+                            <strong>章鱼哥</strong>
+                            <p>
+                                章鱼哥看待问题很成熟，喜欢吹单簧管、绘画、跳舞，梦想自己有一天成为艺术家。他会理智地看待问题和事物，但他的理智成熟总在海绵宝宝的捣乱下统统消失，使得他变得愤怒，却更显得他单纯。谈不上热爱生活，但愿意对生活妥协。
+                                典型的现实主义者，对自己的人生有合理的规划。不相信世上有魔法和圣诞老人，也不相信世上有鬼。曾嘲笑过试图挖掘魔法的海绵宝宝。
+                                外表冷酷，口是心非，心地善良，会对别人的不幸遭遇感到同情并帮助别人。虽然章鱼哥表面看上去不喜欢海绵宝宝，但却总是在海绵宝宝危难的时候伸出援手，是个讲义气并有正义感的章鱼。
+                                章鱼哥有潜在的艺术天分，在乐队指挥上有一定的能力。但很容易受到外界影响。在制作交响乐谱时会把听到的都写进去。
+                            </p>
+                        </div>
+                    </div>
+                    <h2>海绵宝宝</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>

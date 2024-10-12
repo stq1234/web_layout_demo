@@ -1,0 +1,401 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* outline: 1px solid black; */
+}
+
+:root {
+    --bee-size: 12.5vw;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+@font-face {
+    font-family: 'MyFont';
+    /*字体名称*/
+    src: url('./assets/YouSheBiaoTiHei-2.ttf');
+    /*字体源文件*/
+}
+
+.nav-container {
+    width: 100vw;
+    height: 100px;
+    background-color: #8da1f8;
+}
+
+#nav {
+    width: 80%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    background-color: white;
+}
+
+.nav-item {
+    display: inline-block;
+    width: 19.8%;
+    /* 可能需要改这里 每个的宽度 */
+    height: 35px;
+    margin-left: 2.5%;
+    /* 可能需要改这里 每个导航栏的边距 */
+    margin-right: 2.5%;
+}
+
+.nav-item .content {
+    /* display: inline-block; */
+    text-align: center;
+    color: rgb(70, 100, 180);
+    font-weight: 100;
+    font-size: 30px;
+    font-family: 'MyFont';
+    transition: font-size 0.5s ease-in-out;
+    height: 35px;
+    overflow: hidden;
+}
+
+/* .nav-item.active {
+    border: 6px solid var(--mycolor);
+    border-radius: 10px;
+    background-color: lightgray;
+} */
+.nav-item .box {
+    background-color: var(--mycolor);
+    width: 100%;
+    /* 可能需要改这里 和每个导航栏的宽度相同*/
+    height: 7px;
+    border-radius: 2px;
+    bottom: 7px;
+}
+
+.nav-item:hover .content {
+    /* transform: scale(1.2); */
+    font-size: 35px;
+}
+
+#nav ul {
+    width: 100%;
+}
+
+#nav ul .nav-box {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    width: 20%;
+    /* 可能需要改这里 和每个导航栏的宽度相同*/
+    height: 7px;
+    border-radius: 2px;
+    transition: 0.5s;
+}
+
+#nav ul li:nth-child(1):hover~.nav-box {
+    left: calc(100% / 4 * 0 + 2.5%);
+    background-color: red;
+}
+
+#nav ul li:nth-child(2):hover~.nav-box {
+    left: calc(100% / 4 * 1 + 2.5%);
+    background-color: skyblue;
+}
+
+#nav ul li:nth-child(3):hover~.nav-box {
+    left: calc(100% / 4 * 2 + 2.5%);
+    background-color: green;
+}
+
+#nav ul li:nth-child(4):hover~.nav-box {
+    left: calc(100% / 4 * 3 + 2.5%);
+    background-color: purple;
+}
+
+#app {
+    width: 100vw;
+    margin-top: 100px;
+    height: auto;
+}
+
+.main-div {
+    display: none;
+    width: 100vw;
+
+}
+
+.main-div.active {
+    display: block;
+}
+
+/* 蜂巢布局 start*/
+.main-div.bee .line {
+    display: flex;
+    flex-direction: row;
+    margin-top: calc(-1 * (var(--bee-size) / 6));
+}
+
+.main-div.bee .line:nth-child(even) {
+    transform: translateX(calc(-0.5 * var(--bee-size)));
+}
+
+.main-div.bee .item {
+    width: var(--bee-size);
+    height: var(--bee-size);
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    background-color: lightgray;
+    color: red;
+    flex-shrink: 0;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease-in-out;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.main-div.bee .item:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    clip-path: inherit;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+/* 蜂巢布局 end */
+
+/* 瀑布布局 start */
+.main-div.water-fall .container {
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    /* justify-content: center; */
+    flex-wrap: nowrap;
+}
+
+.main-div.water-fall .container .col {
+    display: flex;
+    flex-direction: column;
+    width: 23.8vw;
+    margin-left: 0.4%;
+    margin-right: 0.4%;
+
+    .img-box {
+        overflow: hidden;
+        width: 100%;
+        margin-top: 1%;
+        margin-bottom: 1.7%;
+        box-shadow: 2.6px 2.6px 1px rgba(0, 0, 0, 0.4);
+        transition: all 0.4s ease-in-out;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+
+        transition: all 0.4s ease-in-out;
+    }
+
+    img:hover {
+        transform: scale(1.2);
+
+    }
+
+    .img-box:hover {
+        box-shadow: 4.5px 4.5px 1px rgba(0, 0, 0, 0.4);
+    }
+}
+
+.main-div.water-fall .container .col:first-child {
+    margin-left: 0.6%;
+}
+
+/* 瀑布布局 end */
+
+/* 弹性布局 start */
+.main-div.flex .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.main-div.flex .container .phone {
+    width: 21%;
+    margin-left: 1.9%;
+    margin-right: 1.9%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.main-div.flex .container .phone:hover {
+    box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(-7px) scale(1.05);
+}
+
+.main-div.flex .container .phone:hover strong {
+    transform: scale(1.1);
+    /* box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3); */
+}
+
+/* img {
+    border: 2px solid black;
+} */
+.main-div.flex .container .phone img {
+    width: 95%;
+    height: auto;
+    margin-left: 2.5%;
+    margin-top: 8px;
+    margin-bottom: 5px;
+}
+
+.main-div.flex .container .phone .info strong {
+    font-family: 'myfont';
+    text-align: center;
+    font-size: 25px;
+    display: block;
+    /* height: 100px; */
+    height: 3em;
+    transition: all 0.4s ease-in-out;
+}
+
+.main-div.flex .container .phone .info .info1 {
+    width: 80%;
+    height: 1em;
+    margin-top: 1.5em;
+    margin-bottom: 2.5em;
+    text-align: center;
+    margin-left: 10%;
+}
+
+.main-div.flex .container .phone .info .price {
+    color: rgb(7, 153, 211);
+    text-align: center;
+}
+
+.main-div.flex .container .phone .info button {
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    border-radius: 5px;
+    border: 1px solid skyblue;
+    font-size: 20px;
+    font-family: 'myfont';
+    transition: all 0.4s ease-in-out;
+}
+
+.main-div.flex .container .phone .info button:hover {
+    transform: scale(1.1);
+}
+
+/* 弹性布局 end */
+
+/* 网格布局 start */
+.main-div.grid {
+    width: 75%;
+    margin-left: 12.5%;
+}
+
+.main-div.grid .container {
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    width: 100%;
+    display: grid;
+    /* grid-template-rows: ; */
+}
+
+.main-div.grid .container .header {
+    background-color: red;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 100%;
+}
+
+.main-div.grid .container .header li {
+    width: auto;
+    list-style-type: none;
+    text-align: center;
+    font-size: 16px;
+    transition: font-size 0.35s ease-in-out;
+}
+
+.main-div.grid .container .header li:hover {
+    font-size: 20px;
+}
+
+.main-div.grid .container .content {
+    display: flex;
+    /* grid-template-columns: 1fr 5.5fr; */
+    width: 100%;
+    height: 250px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.main-div.grid .container .content .img-box {
+    clip-path: circle(50% at 50% 50%);
+    height: 250px;
+    width: 250px;
+    overflow: hidden;
+}
+
+.main-div.grid .container .content img {
+    height: 100%;
+    width: 100%;
+    transition: transform 0.4s ease-in-out;
+    /* flex-grow: 1; */
+}
+
+.main-div.grid .container .content img:hover{
+    transform: scale(1.17);
+}
+
+.main-div.grid .container .content .content-box {
+    height: 100%;
+    width: calc(100% - 270px);
+    /* flex-grow: 1; */
+    margin-left: 20px;
+    display: grid;
+    grid-template-rows: 1fr 5.5fr;
+}
+
+.main-div.grid .container h1 {
+    text-align: center;
+    color: red;
+}
+
+.main-div.grid .container h2 {
+    text-align: center;
+    background-color: red;
+}
+
+.main-div.grid .container strong {
+    background-color: lightblue;
+    font-family: 'myfont';
+    font-size: 23px;
+}
+
+.main-div.grid .container p {
+    margin-top: 20px;
+    text-indent: 2em;
+}
+
+/* 网格布局 end */
